@@ -1,6 +1,6 @@
 const path = require('path')
 
-module.exports = {
+const config = {
   entry: {
     main: path.resolve(__dirname, './src/index.ts')
   },
@@ -21,21 +21,49 @@ module.exports = {
           }
         ]
       },
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: "file-loader",
-          },
-          {
-            loader: "extract-loader",
-          },
-          {
-            loader: 'css-loader'
-          }
-        ]
-      },
       { test: /\.ts$/, use: 'ts-loader' }
     ]
   }
+}
+
+module.exports = (env, argv) => {
+
+  var cssLoader = null
+
+  if (argv.mode === 'development') {
+    console.log('开发环境')
+    cssLoader = {
+      test: /\.css$/,
+      use: [
+        {
+          loader: 'style-loader'
+        },
+        {
+          loader: 'css-loader'
+        }
+      ]
+    }
+  }
+
+  if (argv.mode === 'production') {
+    console.log('生产环境')
+    cssLoader = {
+      test: /\.css$/,
+      use: [
+        {
+          loader: "file-loader",
+        },
+        {
+          loader: "extract-loader",
+        },
+        {
+          loader: 'css-loader'
+        }
+      ]
+    }
+  }
+
+  config.module.rules.push(cssLoader)
+
+  return config
 }
