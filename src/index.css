@@ -1,0 +1,8 @@
+body {
+  background-color: beige;
+  background-image: url('../public/logo.png')
+}
+
+.box {
+  background-color: aqua;
+}
