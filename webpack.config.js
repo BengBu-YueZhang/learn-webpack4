@@ -11,15 +11,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [
-          { loader: 'style-loader' },
-          {
-            loader: 'css-loader'
-          }
-        ]
-      },
-      {
         test: /\.(png|jpg|gif)$/i,
         use: [
           {
@@ -27,6 +18,20 @@ module.exports = {
             options: {
               limit: 8192
             }
+          }
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: "file-loader",
+          },
+          {
+            loader: "extract-loader",
+          },
+          {
+            loader: 'css-loader'
           }
         ]
       },
