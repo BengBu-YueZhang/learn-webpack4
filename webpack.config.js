@@ -1,20 +1,44 @@
-const path = require('path')
+var path = require('path')
+var CleanWebpackPlugin = require('clean-webpack-plugin')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
+var webpack = require('webpack')
+var MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 8080,
+    disableHostCheck: true,
+    historyApiFallback: true,
+    host: '0.0.0.0',
+    hot: true,
+    https: true
+  },
   entry: {
     main: path.resolve(__dirname, './src')
   },
   output: {
-    filename: '[name].[hash].js',
+    filename: '[name].js',
     path: path.resolve(__dirname, './dist')
   },
   module: {
     rules: [
       {
-        test: /\.less$/,
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      },
+      {
+        test: /\.css$/,
         use: [
           {
-            loader: 'style-loader'
+            loader: MiniCssExtractPlugin.loader
           },
           {
             loader: "css-loader",
@@ -23,12 +47,18 @@ module.exports = {
               modules: true,
               localIdentName: "[local]___[hash:base64:5]"
             }
-          },
-          {
-            loader: "less-loader"
           }
         ]
       }
     ]
-  }
+  },
+  plugins: [
+    new CleanWebpackPlugin(['dist']),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: path.resolve(__dirname, './src/index.html')
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new MiniCssExtractPlugin()
+  ]
 }
