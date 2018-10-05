@@ -3,6 +3,9 @@
     <h1 :class="$style.title">
       my vue cli
     </h1>
+    <router-link to="/home">Home</router-link>
+    <router-link to="/about">About</router-link>
+    <router-view></router-view>
   </div>
 </template>
 
