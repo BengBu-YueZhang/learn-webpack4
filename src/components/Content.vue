@@ -1,6 +1,6 @@
 <template>
   <h1>
-    home
+    content
     <hello></hello>
   </h1>
 </template>
@@ -9,7 +9,7 @@
 import Hello from '../common/Hello.vue'
 
 export default {
-  name: 'Home',
+  name: 'content',
 
   components: {
     Hello

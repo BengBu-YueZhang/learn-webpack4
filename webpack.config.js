@@ -13,7 +13,8 @@ module.exports = {
   },
   output: {
     filename: '[name].[hash].js',
-    path: path.resolve(__dirname, './dist')
+    path: path.resolve(__dirname, './dist'),
+    chunkFilename: '[name].[hash].js'
   },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
@@ -24,6 +25,32 @@ module.exports = {
     host: '0.0.0.0',
     hot: true,
     https: true
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        default: false,
+        vendors: false,
+        // 第三方模块
+        vendor: {
+          name: 'vendors',
+          chunks: 'all',
+          test: /node_modules/,
+          priority: 20
+        },
+        // 公共模块(异步模块的公共的模块)
+        // 设置优先级避免重复的打包
+        common: {
+          name: 'common',
+          minChunks: 2,
+          chunks: 'async',
+          priority: 10,
+          // 强制形成common块
+          enforce: true,
+          reuseExistingChunk: true
+        }
+      }
+    }
   },
   module: {
     rules: [
