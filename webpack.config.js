@@ -1,6 +1,6 @@
 var path = require('path')
-var CleanWebpackPlugin = require('clean-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+var DllReferencePlugin = require('webpack/lib/DllReferencePlugin')
 
 module.exports = {
   target: 'web',
@@ -33,9 +33,12 @@ module.exports = {
   },
 
   plugins: [
-    new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './public/index.html')
+    }),
+    // 使用动态链接库
+    new DllReferencePlugin({
+      manifest: require('./dist/moment.manifest.json'),
     })
   ]
 }

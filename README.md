@@ -15,3 +15,13 @@
 > 用于在主要配置文件中去引入 DllPlugin 插件打包好的动态链接库文件
 
 
+### 构建目标
+
+- .dll.js 动态链接库文件
+
+- .manifest.json 动态链接库的描述文件
+
+.dll.js需要加载到HtmlWebpackPlugin生成的html文件中, 当main.js遇到其依赖的模块在dll.js文件中时，会直接通过dll.js文件暴露出的全局变量去获取打包在dll.js文件的模块。
+
+
+
