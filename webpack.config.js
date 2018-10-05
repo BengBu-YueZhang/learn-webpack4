@@ -1,6 +1,7 @@
 var path = require('path')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var DllReferencePlugin = require('webpack/lib/DllReferencePlugin')
+var AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 
 module.exports = {
   target: 'web',
@@ -39,6 +40,11 @@ module.exports = {
     // 使用动态链接库
     new DllReferencePlugin({
       manifest: require('./dist/moment.manifest.json'),
-    })
+    }),
+    new AddAssetHtmlPlugin([
+      {
+        filepath: path.resolve(__dirname, './**/*.dll.js')
+      }
+    ])
   ]
 }
