@@ -2,12 +2,14 @@ var path = require('path')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var webpack = require('webpack')
 var VueLoaderPlugin = require('vue-loader/lib/plugin')
+var CleanWebpackPlugin = require('clean-webpack-plugin')
+var MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   target: 'web',
   mode: 'none',
   entry: {
-    main: path.resolve(__dirname, './src')
+    main: path.resolve(__dirname, './src/main.js')
   },
   output: {
     filename: '[name].[hash].js',
@@ -26,11 +28,14 @@ module.exports = {
   module: {
     rules: [
       {
+        enforce: 'pre',
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        exclude: /node_modules/
+      },
+      {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          hotReload: true
-        }
+        loader: 'vue-loader'
       },
       {
         test: /\.js$/,
@@ -61,9 +66,9 @@ module.exports = {
               localIdentName: "[local]___[hash:base64:5]"
             }
           },
-          {
-            loader: 'postcss-loader'
-          },
+          // {
+          //   loader: 'postcss-loader'
+          // },
           {
             loader: 'less-loader'
           }
@@ -73,7 +78,7 @@ module.exports = {
         test: /\.css$/,
         use: [
           {
-            loader: loader: process.env.NODE_ENV !== 'production' ? 'vue-style-loader' : MiniCssExtractPlugin.loader
+            loader: process.env.NODE_ENV !== 'production' ? 'vue-style-loader' : MiniCssExtractPlugin.loader
           },
           {
             loader: "css-loader",
