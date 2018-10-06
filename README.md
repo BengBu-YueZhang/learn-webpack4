@@ -14,5 +14,6 @@
 - 09_externals 全局变量
 - ✨ 12_happly_pack 多进程打包
 - 14_watch watch
+- ✨ 16_async_import 异步加载模块
 
 ...持续更新
