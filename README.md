@@ -1,17 +1,9 @@
-## webpack4学习项目 📦
+## runtimeChunk
 
-> 以分支作为区分, 不同的分支代表着不同的功能的配置。不同的分支拥有不同的README.md作单独的说明
+### 什么是runtime? 
 
-- master 空
-- 01_simple_config 最简单的配置
-- 02_simple_mode mode的简单使用
-- 03_simple_loader loader的简单使用
-- 04_simple_loader_url_file url_loader file_loader的使用
-- ✨ 05_simple_css_module css模块化
-- ✨ 06_split_chunks_plugin 代码分割
-- ✨ 07_dll_plugin 生成dll提升打包的速度
-- 08_resolve
-- 09_externals 全局变量
-- 14_watch watch
+runtime，以及伴随的 manifest 数据，主要是指：在浏览器运行时，webpack 用来连接模块化的应用程序的所有代码。runtime 包含：在模块交互时，连接模块所需的加载和解析逻辑。包括浏览器中的已加载模块的连接，以及懒加载模块的执行逻辑。
 
-...持续更新
+### 优化
+
+打包生成的runtime.js非常的小, 可以将它内联到我们的index.html之中。因为http请求的时间远远大于runtime.js执行的时间。
