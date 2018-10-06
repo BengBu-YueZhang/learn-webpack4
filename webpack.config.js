@@ -9,6 +9,7 @@ var HappyPack = require('happypack')
 var DllReferencePlugin = require('webpack/lib/DllReferencePlugin')
 var AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+var webpack = require('webpack')
 
 module.exports = {
   target: 'web',
@@ -55,11 +56,7 @@ module.exports = {
           name: 'vendors-chunk',
           chunks: 'all',
           test: /[\\/]node_modules[\\/]/,
-          priority: 20,
-          test (chunks) {
-            // 不打包vue, vue等库文件生成dll
-            return !['vue', 'vuex', 'vue-router'].includes(chunks.name)
-          }
+          priority: 20  
         },
         ui: {
           name: 'ui-chunk',
@@ -165,8 +162,9 @@ module.exports = {
           options: {
             presets: ['@babel/preset-env'],
             plugins: [
+              '@babel/plugin-syntax-dynamic-import'
               // import() plugin
-              require('@babel/plugin-syntax-dynamic-import')
+              // require('@babel/plugin-syntax-dynamic-import')
             ]
           }
         }
@@ -182,9 +180,20 @@ module.exports = {
         filepath: path.resolve(__dirname, './dist/dll/*.dll.js'),
         includeSourcemap: false,
         publicPath: './dll',
-        outputPath: 'dist/dll'
+        outputPath: '/dll'
       }
     ]),
+    new webpack.HashedModuleIdsPlugin({
+      hashFunction: 'sha256',
+      hashDigest: 'hex',
+      hashDigestLength: 20
+    }),
+    new webpack.NamedChunksPlugin(chunk => {
+      if (chunk.name) {
+        return chunk.name;
+      }
+      return Array.from(chunk.modulesIterable, m => m.id).join("_");
+    }),
     new BundleAnalyzerPlugin()
   ]
 }
