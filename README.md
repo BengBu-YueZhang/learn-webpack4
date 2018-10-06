@@ -1,17 +1,5 @@
-## webpack4学习项目 📦
+## 🌲 tree shaking
 
-> 以分支作为区分, 不同的分支代表着不同的功能的配置。不同的分支拥有不同的README.md作单独的说明
+通常用于描述移除 JavaScript 上下文中的未引用代码(dead-code), 基于ES6 modules的静态特性检查。但是babel-preset-env会默认将ES6 modules转换为commonjs。所以需要关闭babel-preset-env的模块转换。webpack会自己进行模块化处理。
 
-- master 空
-- 01_simple_config 最简单的配置
-- 02_simple_mode mode的简单使用
-- 03_simple_loader loader的简单使用
-- 04_simple_loader_url_file url_loader file_loader的使用
-- ✨ 05_simple_css_module css模块化
-- ✨ 06_split_chunks_plugin 代码分割
-- ✨ 07_dll_plugin 生成dll提升打包的速度
-- 08_resolve
-- 09_externals 全局变量
-- 14_watch watch
-
-...持续更新
+如果需要使用tree shaking, 必须在package.json文件中添加sideEffects属性, 声明那些代码是有"副作用"的不能被删除的。在打包时, 将mode设置为production既可以启动树摇。

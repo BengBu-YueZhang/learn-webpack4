@@ -5,7 +5,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   target: 'web',
 
-  mode: 'none',
+  mode: 'production',
 
   entry: {
     main: path.resolve(__dirname, './src/main.js')
@@ -24,7 +24,15 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env'],
+            presets: [
+              [
+                '@babel/preset-env',
+                {
+                  'useBuiltIns': 'usage',
+                  'modules': false
+                }
+              ]
+            ],
             plugins: []
           }
         }
