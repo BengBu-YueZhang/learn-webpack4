@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "dll": "webpack --config webpack.dll.config.js"
   },
   "repository": {
     "type": "git",
@@ -19,15 +20,34 @@
   },
   "homepage": "https://github.com/BengBu-YueZhang/learn-webpack4#readme",
   "dependencies": {
+    "css-loader": "^1.0.0",
+    "element-ui": "^2.4.8",
+    "less": "^3.8.1",
+    "less-loader": "^4.1.0",
+    "vue": "^2.5.17",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1",
     "webpack-cli": "^3.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
+    "add-asset-html-webpack-plugin": "^3.0.1",
     "babel-loader": "^8.0.4",
     "clean-webpack-plugin": "^0.1.19",
+    "file-loader": "^2.0.0",
+    "happypack": "^5.0.0",
     "html-webpack-plugin": "^4.0.0-beta.1",
+    "mini-css-extract-plugin": "^0.4.3",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "uglifyjs-webpack-plugin": "^2.0.1",
+    "url-loader": "^1.1.1",
+    "vue-loader": "^15.4.2",
+    "vue-template-compiler": "^2.5.17",
     "webpack": "^4.20.2",
-    "webpack-dev-server": "^3.1.9"
+    "webpack-bundle-analyzer": "^3.0.2",
+    "webpack-dev-server": "^3.1.9",
+    "webpack-parallel-uglify-plugin": "^1.1.0"
   }
 }
