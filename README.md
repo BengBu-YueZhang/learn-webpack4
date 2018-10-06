@@ -12,7 +12,7 @@
 - ✨ 07_dll_plugin 生成dll提升打包的速度
 - 08_resolve
 - 09_externals 全局变量
-- 12_happly_pack 多进程打包
+- ✨ 12_happly_pack 多进程打包
 - 14_watch watch
 
 ...持续更新
