@@ -10,10 +10,13 @@
 - ✨ 05_simple_css_module css模块化
 - ✨ 06_split_chunks_plugin 代码分割
 - ✨ 07_dll_plugin 生成dll提升打包的速度
+- ✨ 09_long_term_caching 长效缓存
 - 08_resolve
-- 09_externals 全局变量
+- 10_externals 全局变量
 - ✨ 12_happly_pack 多进程打包
+- 13_minimizer css压缩 js压缩
 - 14_watch watch
-- ✨ 16_async_import 异步加载模块
+- ✨ 15_runtime_chunk
+- ✨ 20_three_shaking 🌲摇动
 
 ...持续更新
