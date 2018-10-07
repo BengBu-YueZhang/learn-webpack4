@@ -1,6 +1,7 @@
 var path = require('path')
 var CleanWebpackPlugin = require('clean-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+var StyleLintPlugin = require('stylelint-webpack-plugin')
 
 module.exports = {
   target: 'web',
@@ -28,6 +29,18 @@ module.exports = {
             plugins: []
           }
         }
+      },
+      {
+        test: /\.css$/,
+        exclude: /(node_modules|bower_components)/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader'
+          }
+        ] 
       }
     ]
   },
@@ -36,6 +49,9 @@ module.exports = {
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './public/index.html')
+    }),
+    new StyleLintPlugin({
+      files: ['**/*.{vue,htm,html,css,sss,less,scss,sass}'],
     })
   ]
 }
