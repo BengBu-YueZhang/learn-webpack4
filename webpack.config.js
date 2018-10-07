@@ -7,6 +7,15 @@ module.exports = {
 
   mode: 'none',
 
+  devServer: {
+    compress: true,
+    port: 8080,
+    disableHostCheck: true,
+    historyApiFallback: true,
+    host: '0.0.0.0',
+    hot: true
+  },
+
   entry: {
     main: path.resolve(__dirname, './src/main.js')
   },
@@ -18,6 +27,12 @@ module.exports = {
 
   module: {
     rules: [
+      {
+        enforce: 'pre',
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        exclude: /node_modules/
+      },
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
