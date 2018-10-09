@@ -17,6 +17,8 @@
 - 13_minimizer css压缩 js压缩
 - 14_watch watch
 - ✨ 15_runtime_chunk
+- 18_eslint
 - ✨ 20_three_shaking 🌲摇动
+- 22_stylelint
 
 ...持续更新
