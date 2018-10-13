@@ -55,6 +55,27 @@ module.exports = {
             loader: 'postcss-loader'
           }
         ]
+      },
+      {
+        test: /\.less$/,
+        exclude: /(node_modules|bower_components)/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1
+            }
+          },
+          {
+            loader: 'postcss-loader'
+          },
+          {
+            loader: 'less-loader'
+          }
+        ]
       }
     ]
   },
